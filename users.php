@@ -26,26 +26,6 @@
 	  echo json_encode($data);
 	}
 
-	// Add a new user into database
-	if ($api == 'POST') {
-	  $name = $user->test_input($_POST['name']);
-	  $email = $user->test_input($_POST['email']);
-	  $phone = $user->test_input($_POST['phone']);
-	  $password = $user->test_input($_POST['password']);
-
-	  if ($user->insert($name, $email, $phone, $password)) {
-	    echo $user->message('User added successfully!',false);
-	  } else {
-	    echo $user->message('Failed to add an user!',true);
-	  }
-
-	  if($user->checkUser($email, $password)){
-		echo $user->message('User Login Successfu!',false);
-	  }else{
-		echo $user->message('User email or password incorrect!');
-	  }
-	}
-
 	// Update an user in database
 	if ($api == 'PUT') {
 	  parse_str(file_get_contents('php://input'), $post_input);

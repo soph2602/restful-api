@@ -21,10 +21,7 @@
 	    $sql = 'INSERT INTO users (name, email, phone, password) VALUES (:name, :email, :phone, :password)';
 	    $stmt = $this->conn->prepare($sql);
 	    $stmt->execute(['name' => $name, 'email' => $email, 'phone' => $phone, 'password' => $password]);
-		$row = $stmt->rowCount();
-	    if($row > 0){
-			return true;
-		}		
+		return true;		
 	  }
 
 	  // Login a user in the database
@@ -34,7 +31,7 @@
 	    $stmt->execute(['email' => $email, 'password' => $password]);
 		$row = $stmt->rowCount();
 		if($row > 0){
-			return true;
+		return true;
 		}		
 	  }
 
