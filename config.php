@@ -1,16 +1,15 @@
 <?php
 	class Config {
-	  // Database Details
+	
 	  private const DBHOST = 'localhost';
 	  private const DBUSER = 'root';
 	  private const DBPASS = 'Psalm122';
 	  private const DBNAME = 'restfulapidb';
-	  // Data Source Network
+	  
 	  private $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . '';
-	  // conn variable
+	
 	  protected $conn = null;
 
-	  // Constructor Function
 	  public function __construct() {
 	    try {
 	      $this->conn = new PDO($this->dsn, self::DBUSER, self::DBPASS);
@@ -21,7 +20,6 @@
 	    return $this->conn;
 	  }
 
-	  // Sanitize Inputs
 	  public function test_input($data) {
 	    $data = strip_tags($data);
 	    $data = htmlspecialchars($data);
@@ -30,7 +28,6 @@
 	    return $data;
 	  }
 
-	  // JSON Format Converter Function
 	  public function message($content, $status) {
 	    return json_encode(['message' => $content, 'error' => $status]);
 	  }
