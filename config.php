@@ -8,16 +8,16 @@
 	  
 	  private $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . '';
 	
-	  protected $conn = null;
+	  protected $connection = null;
 
 	  public function __construct() {
 	    try {
-	      $this->conn = new PDO($this->dsn, self::DBUSER, self::DBPASS);
-	      $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	      $this->connection = new PDO($this->dsn, self::DBUSER, self::DBPASS);
+	      $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	    } catch (PDOException $e) {
 	      die('Connectionn Failed : ' . $e->getMessage());
 	    }
-	    return $this->conn;
+	    return $this->connection;
 	  }
 
 	  public function test_input($data) {
