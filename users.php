@@ -6,7 +6,7 @@
 
 	include_once 'database.php';
 
-	$user = new Database();
+	$db = new Database();
 
 	$api = $_SERVER['REQUEST_METHOD'];
 
@@ -14,9 +14,9 @@
 
 	if ($api == 'GET') {
 	  if ($id != 0) {
-	    $data = $user->fetch($id);
+	    $data = $db->fetch($id);
 	  } else {
-	    $data = $user->fetch();
+	    $data = $db->fetch();
 	  }
 	  echo json_encode($data);
 	}
@@ -24,31 +24,31 @@
 	if ($api == 'PUT') {
 	  parse_str(file_get_contents('php://input'), $post_input);
 
-	  $name = $user->test_input($post_input['name']);
-	  $email = $user->test_input($post_input['email']);
-	  $phone = $user->test_input($post_input['phone']);
-	  $password = $user->test_input($_POST['password']);
+	  $name = $db->test_input($post_input['name']);
+	  $email = $db->test_input($post_input['email']);
+	  $phone = $db>test_input($post_input['phone']);
+	  $password = $db->test_input($_POST['password']);
 
 	  if ($id != null) {
-	    if ($user->update($name, $email, $phone, $password, $id)) {
-	      echo $user->message('User updated successfully!',false);
+	    if ($db->update($name, $email, $phone, $password, $id)) {
+	      echo $db->message('User updated successfully!',false);
 	    } else {
-	      echo $user->message('Failed to update an user!',true);
+	      echo $db->message('Failed to update an user!',true);
 	    }
 	  } else {
-	    echo $user->message('User not found!',true);
+	    echo $db->message('User not found!',true);
 	  }
 	}
 
 	if ($api == 'DELETE') {
 	  if ($id != null) {
-	    if ($user->delete($id)) {
-	      echo $user->message('User deleted successfully!', false);
+	    if ($db->delete($id)) {
+	      echo $db->message('User deleted successfully!', false);
 	    } else {
-	      echo $user->message('Failed to delete an user!', true);
+	      echo $db->message('Failed to delete an user!', true);
 	    }
 	  } else {
-	    echo $user->message('User not found!', true);
+	    echo $db->message('User not found!', true);
 	  }
 	}
 

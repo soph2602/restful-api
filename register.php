@@ -6,7 +6,7 @@
 
 	include_once 'database.php';
 	
-	$user = new Database();
+	$db = new Database();
 
 	$api = $_SERVER['REQUEST_METHOD'];
 
@@ -15,21 +15,21 @@
         !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone'])
         && !empty($_POST['password'])
         ) {
-	  $name = $user->test_input($_POST['name']);
-	  $email = $user->test_input($_POST['email']);
-	  $phone = $user->test_input($_POST['phone']);
-	  $password = $user->test_input($_POST['password']);
+	  $name = $db->test_input($_POST['name']);
+	  $email = $db->test_input($_POST['email']);
+	  $phone = $db->test_input($_POST['phone']);
+	  $password = $db->test_input($_POST['password']);
 
-      if($user->checkUser($email,$password)){
-        echo $user->message('User already registered!',true);
+      if($db->checkUser($email,$password)){
+        echo $db->message('User already registered!',true);
       }     
 	  else {
-         $user->insert($name,$email,$phone,$password);
-         echo $user->message('User added successfully!',false);
+         $db->insert($name,$email,$phone,$password);
+         echo $db->message('User added successfully!',false);
         } 	 
 	}
       else {
-	     echo $user->message('Name, email, contact and password cannot be empty!',true);
+	     echo $db->message('Name, email, contact and password cannot be empty!',true);
 	  }
 }
 ?>
