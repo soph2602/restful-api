@@ -3,7 +3,7 @@
 	
 	  private const DBHOST = 'localhost';
 	  private const DBUSER = 'root';
-	  private const DBPASS = 'Psalm122';
+	  private const DBPASS = '';
 	  private const DBNAME = 'restfulapidb';
 	  
 	  private $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . '';
